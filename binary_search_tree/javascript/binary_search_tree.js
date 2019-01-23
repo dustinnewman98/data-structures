@@ -6,7 +6,7 @@ class Node {
     this.right = null;
   }
 
-  search = value => {
+  search(value) {
     if (value == this.value) {
       return this;
     } else if (value < this.value && this.left) {
@@ -16,52 +16,54 @@ class Node {
     } else {
       return null;
     }
-  };
+  }
 
-  addLeftChild = child => {
+  addLeftChild(child) {
     if (this.left) {
       this.left.addChild(child);
     } else {
-      let newNode = new Node(value);
+      let newNode = new Node(child);
       this.left = newNode;
     }
-  };
+  }
 
-  addRightChild = child => {
+  addRightChild(child) {
     if (this.right) {
       this.right.addChild(child);
     } else {
-      let newNode = new Node(value);
+      let newNode = new Node(child);
       this.right = newNode;
     }
-  };
+  }
 
-  addChild = child => {
+  addChild(child) {
     if (child == this.value) {
       this.count++;
     } else if (child < this.value) {
-      addLeftChild(child);
+      this.addLeftChild(child);
     } else {
-      addRightChild(child);
+      this.addRightChild(child);
     }
-  };
+  }
 }
 
-class Tree {
+class BinarySearchTree {
   constructor() {
     this.root = null;
   }
 
-  addNode = value => {
+  addNode(value) {
     if (this.root) {
       this.root.addChild(value);
     } else {
       let newNode = new Node(value);
       this.root = newNode;
     }
-  };
+  }
 
-  search = value => {
+  search(value) {
     return this.root.search(value);
-  };
+  }
 }
+
+module.exports = BinarySearchTree;

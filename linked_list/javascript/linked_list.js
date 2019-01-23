@@ -14,11 +14,29 @@ class LinkedList {
   }
 
   /**
+   * Returns the value of the head of the list
+   */
+  first() {
+    if (this.head) {
+      return this.head.value;
+    }
+  }
+
+  /**
+   * Returns the value of the tail of the list
+   */
+  last() {
+    if (this.tail) {
+      return this.tail.value;
+    }
+  }
+
+  /**
    * Inserts a node at the end of the list
    *
    * @param value - The value of the node
    */
-  append = value => {
+  append(value) {
     let newNode = new Node(value);
 
     if (this.tail) {
@@ -40,14 +58,14 @@ class LinkedList {
 
     // Increment our size
     this.size++;
-  };
+  }
 
   /**
    * Inserts a node at the beginning of the list
    *
    * @param value - The value of the node
    */
-  prepend = value => {
+  prepend(value) {
     let newNode = new Node(value);
 
     if (this.head) {
@@ -69,7 +87,7 @@ class LinkedList {
 
     // Increment our size
     this.size++;
-  };
+  }
 
   /**
    * Insert a new node at a specific index.
@@ -82,7 +100,7 @@ class LinkedList {
    * @throws Argument index must be non-negative number.
    * @throws Argument index must be within range of current list.
    */
-  insertAt = (index, value) => {
+  insertAt(index, value) {
     // We optimize calls to this.size by storing the size, which will not change until the end of the function, as a constant
     const listSize = this.size;
 
@@ -118,9 +136,9 @@ class LinkedList {
     next.prev = newNode;
 
     this.size++;
-  };
+  }
 
-  deleteAt = index => {
+  deleteAt(index) {
     const listSize = this.size;
 
     if (index < 0) {
@@ -166,5 +184,24 @@ class LinkedList {
 
     this.size--;
     return ret;
-  };
+  }
+
+  /**
+   *
+   * @param {*} value - The value being searched for
+   */
+  contains(value) {
+    let curr = this.head;
+
+    while (curr) {
+      if (curr.value === value) {
+        return true;
+      }
+      curr = curr.next;
+    }
+
+    return false;
+  }
 }
+
+module.exports = LinkedList;
