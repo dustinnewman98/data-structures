@@ -22,7 +22,8 @@ class Node {
     if (this.left) {
       this.left.addChild(child);
     } else {
-      this.left = child;
+      let newNode = new Node(value);
+      this.left = newNode;
     }
   };
 
@@ -30,14 +31,15 @@ class Node {
     if (this.right) {
       this.right.addChild(child);
     } else {
-      this.right = child;
+      let newNode = new Node(value);
+      this.right = newNode;
     }
   };
 
   addChild = child => {
-    if (child.value == this.value) {
+    if (child == this.value) {
       this.count++;
-    } else if (child.value < this.value) {
+    } else if (child < this.value) {
       addLeftChild(child);
     } else {
       addRightChild(child);
@@ -51,11 +53,10 @@ class Tree {
   }
 
   addNode = value => {
-    let newNode = new Node(value);
-
     if (this.root) {
-      this.root.addChild(newNode);
+      this.root.addChild(value);
     } else {
+      let newNode = new Node(value);
       this.root = newNode;
     }
   };
